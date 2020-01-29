@@ -1,5 +1,5 @@
 <h1>Sweet! This is Game Number <%= @game.id %>!</h1>
-<p>The board size is <%= @game.board_size %></p>
+<p>Board Size = <%= @game.board_size %></p>
 
 <% unless @game.winner.empty? %>
 Congrats <%= @game.winner %>, you won!

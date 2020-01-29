@@ -1,4 +1,9 @@
 class GameController < ApplicationController
+    
+    def index
+        @active_games = Game.where(status: 1)
+    end
+    
     def new
         
     end

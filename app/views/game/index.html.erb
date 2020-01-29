@@ -1,3 +1,24 @@
-<h1>Hooray!</h1>
-<p>Lets play a game!</p>
-<%= link_to 'Click Here to Start', new_game_path %>
+<h1>Tic Tac Toe!</h1>
+<p>Lets play a game! <%= link_to('Click here to start!', new_game_path) %></p>
+
+<% if @active_games.length > 0%>
+<h2>Active Games</h2>
+<table class="game-table">
+    <thead>
+        <tr>
+            <td style="border: 1px solid black">Id</td>
+            <td>Grid Size</td>
+            <td>Continue?</td>
+        </tr>
+    </thead>
+    <tbody>
+    <% @active_games.each do |game| %>
+        <tr>
+            <td><%= game.id %></td>
+            <td><%= game.board_size %></td>
+            <td><%= link_to('Continue!', game_path(game)) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<% end %>
