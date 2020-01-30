@@ -7,9 +7,12 @@
 }
 
 .block-grid {
-    display: block;
+    display: flex;
     height: 100px;
     width: 100px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .border-left {
@@ -25,4 +28,9 @@
     text-align: center;
     height: 15px;
     min-width: 35px;
+}
+
+.game-element {
+    display: block;
+    font-size: 30px;
 }

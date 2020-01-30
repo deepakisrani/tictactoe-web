@@ -4,12 +4,15 @@
 <% unless @game.winner.empty? %>
 Congrats <%= @game.winner %>, you won!
 <% else %>
+<div id="js-gamearea" data-gameid="<%= @game.id %>" data-gridsize="<%= @game.board_size %>">
     <% @game.board_size.times do |i|%>
         <div class="grid-row">
         <% @game.board_size.times do |j|%>
-            <div class="js-game-block block-grid <%= "border-left" unless j == 0 %> <%= "border-top" unless i == 0 %>" data-row="<%= i %>" data-column="<%= j %>"></div>
+            <div class="js-game-block block-grid <%= "border-left" unless j == 0 %> <%= "border-top" unless i == 0 %>" data-row="<%= i %>" data-column="<%= j %>">
+            </div>
         <% end %>
         </div>
     <% end %>
+<div>
 <% end %>
 

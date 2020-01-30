@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   #get 'home/index' // get 'whatever/route' => 'controller#action' [Alternative]
 
+  post 'api/makemove' => 'move#make'
   resources :game
   #get 'new-game' => 'game#new'
   #post 'start-game' => 'game#start'
