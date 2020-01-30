@@ -12,13 +12,9 @@
         </tr>
     </thead>
     <tbody>
-    <% @active_games.each do |game| %>
-        <tr>
-            <td><%= game.id %></td>
-            <td><%= game.board_size %></td>
-            <td><%= link_to('Continue!', game_path(game)) %></td>
-        </tr>
-    <% end %>
+
+    <%= render @active_games %>
+    
     </tbody>
 </table>
 <% end %>

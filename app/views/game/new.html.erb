@@ -1,14 +1,3 @@
-<h1>New Game Homepage Coming Soon!</h1>
+<h1>Lets play a game!</h1>
 
-<%= form_with scope: :game, url: game_index_path, local: true do |form| %>
-    
-  <p>
-    <%= form.label "Enter Board Size"%><br>
-    <%= form.number_field :board_size %>
-  </p>
-    <%= form.hidden_field :status, :value => 1 %>
-    <%= form.hidden_field :winner, :value => "" %>
-  <p>
-    <%= form.submit "Start New Game" %>
-  </p>
-<% end %>
+<%= render 'newgame_form' %>

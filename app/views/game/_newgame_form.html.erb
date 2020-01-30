@@ -1,0 +1,24 @@
+<%= form_with scope: :game_data, url: game_index_path, local: true do |form| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(@game.errors.count, "error") %> prohibited
+        this game from starting:
+      </h3>
+      <ul>
+        <% @game.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label "Enter Board Size"%><br>
+    <%= form.number_field :board_size %>
+  </p>
+    <%= form.hidden_field :status, :value => 1 %>
+    <%= form.hidden_field :winner, :value => "" %>
+  <p>
+    <%= form.submit "Start New Game" %>
+  </p>
+<% end %>
