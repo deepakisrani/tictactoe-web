@@ -22,9 +22,27 @@ class GameController < ApplicationController
     def show
         id = params[:id]
         @game = Game.find(id)
+        @moves = generate_move_hash(@game)
     end
 
     def update
         
+    end
+
+    def destroy
+        @game = Game.find(params[:id])
+        @game.destroy
+     
+        redirect_to root_path
+    end
+
+    private
+
+    def generate_move_hash (game_obj)
+        moves = {}
+        game_obj.board.to_a.each do |move|
+            moves["#{move.row}_#{move.column}"] = move.symbol           
+        end
+        moves
     end
 end

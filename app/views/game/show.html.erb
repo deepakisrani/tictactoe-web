@@ -1,14 +1,16 @@
-<h1>Sweet! This is Game Number <%= @game.id %>!</h1>
+<h1>This is Game Number <%= @game.id %>!</h1>
 <p>Board Size = <%= @game.board_size %></p>
-
-<% unless @game.winner.empty? %>
-Congrats <%= @game.winner %>, you won!
+<% if @game.status == 2 %>
+    <h1><%= @game.winner %> won this match!</h1>
+<% elsif @game.status == 3 %>
+    <h1>This match was a draw!</h1>
 <% else %>
 <div id="js-gamearea" data-gameid="<%= @game.id %>" data-gridsize="<%= @game.board_size %>">
     <% @game.board_size.times do |i|%>
         <div class="grid-row">
         <% @game.board_size.times do |j|%>
-            <div class="js-game-block block-grid <%= "border-left" unless j == 0 %> <%= "border-top" unless i == 0 %>" data-row="<%= i %>" data-column="<%= j %>">
+            <div id="<%= "block-#{i}#{j}" %>" class="js-game-block block-grid <%= "border-left" unless j == 0 %> <%= "border-top" unless i == 0 %>" data-row="<%= i %>" data-column="<%= j %>">
+                <%= "<div class=\"game-element\">#{@moves["#{i}_#{j}"]}</div>".html_safe unless @moves["#{i}_#{j}"].nil?  %>
             </div>
         <% end %>
         </div>
@@ -16,3 +18,4 @@ Congrats <%= @game.winner %>, you won!
 <div>
 <% end %>
 
+<div class="overlay hide"> <div id="message"></div></div>

@@ -2,4 +2,5 @@
     <td><%= game.id %></td>
     <td><%= game.board_size %></td>
     <td><%= link_to('Continue!', game_path(game), data: { confirm: 'Are you sure?' }) %></td>
+    <td><%= link_to 'Finish!', game_path(game), method: :delete, data: { confirm: 'Are you sure? This will delete the game.' } %></td>
 </tr>

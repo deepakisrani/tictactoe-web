@@ -3,26 +3,25 @@ require_relative 'umpire'
 class Grid
     attr_reader :play_area, :game_state, :turn
 
-    # Creates and initializes a n*n array (play area) 
-    def initialize(grid_size)
+    def initialize(grid_size, move_list)
         @game_state = {invalidmove: 0, victory: 1, draw: 2, continue: 3}
-        @grid_size = grid_size < 3 ? 3 : grid_size
+        @match_state = {active: 1, player_win: 2, computer_win: 3, draw: 4}
+
+        @grid_size = grid_size
+        @move_list = move_list
         @play_area = generate_grid(@grid_size)
         @area_size = @grid_size ** 2
-        @turn = 0
+        fill_grid
+        @turn = move_list.length
     end
 
-    def get_play_symbols
-        PLAY_SYMBOLS
-    end
-
-    def take_move(player, position)
-        row, col = position[:row], position[:col]
+    def take_move(move)
+        row, col, symbol = move[:row], move[:col], move[:symbol]
         if row < grid_size && col < grid_size && play_area[row][col].nil?
-            play_area[row][col] = PLAY_SYMBOLS[player]
+            play_area[row][col] = symbol
             @turn += 1
 
-            if Umpire.game_won?(play_area, PLAY_SYMBOLS[player])
+            if Umpire.game_won?(play_area, symbol)
                 game_state[:victory]                
             elsif @turn == area_size
                 game_state[:draw]
@@ -35,7 +34,6 @@ class Grid
     end
 
     private
-    PLAY_SYMBOLS = { player_1: :x, player_2: :o }
     attr_reader :area_size, :grid_size
     attr_writer :turn
 
@@ -43,5 +41,11 @@ class Grid
         play_area = []
         grid_size.times { play_area << Array.new(grid_size)}
         play_area
+    end
+
+    def fill_grid
+        @move_list.each do |move|
+            @play_area[move.row][move.column] = move.symbol
+        end
     end
 end

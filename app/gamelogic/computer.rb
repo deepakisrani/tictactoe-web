@@ -7,7 +7,7 @@ class Computer < Player
     end
 
     def make_move
-        {row: rand(selection_range), col: rand(selection_range)}
+        {row: rand(selection_range), col: rand(selection_range), symbol: "O"}
     end
 
     private
