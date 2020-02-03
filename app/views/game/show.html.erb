@@ -1,5 +1,7 @@
 <h1>This is Game Number <%= @game.id %>!</h1>
 <p>Board Size = <%= @game.board_size %></p>
+<p><%= link_to('Back to Home!', root_path) %></p>
+<p><%= link_to('New Game!', new_game_path) %></p>
 <% if @game.status == 2 %>
     <h1><%= @game.winner %> won this match!</h1>
 <% elsif @game.status == 3 %>
