@@ -111,8 +111,6 @@ var tictactoe = (function() {
 
 })();
 
-console.log("loaded")
 window.addEventListener ("load", function(event) {
-    console.log("inside load event")
     tictactoe.init();
 });
