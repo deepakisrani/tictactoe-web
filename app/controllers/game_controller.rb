@@ -39,7 +39,7 @@ class GameController < ApplicationController
     private
 
     def generate_move_hash (game_obj)
-        moves = {}
+        moves = Hash.new
         game_obj.board.to_a.each do |move|
             moves["#{move.row}_#{move.column}"] = move.symbol           
         end
