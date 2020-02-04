@@ -1,7 +1,7 @@
 var tictactoe = (function() {
 
     var board, gridBlocks, overlay;
-    var _waitForComputer = false, gridSize = 0, gameid, response;
+    var _waitForComputer = false, gridSize = 0, gameid;
 
     var init = function() {
         _setSelectors();
@@ -60,7 +60,7 @@ var tictactoe = (function() {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     console.log(xhr.responseText);
 
-                    response = JSON.parse(xhr.responseText);
+                    var response = JSON.parse(xhr.responseText);
 
                     if (response.continue) {
                         _makeComputerTurn(response.computer_move.row, response.computer_move.col, response.computer_move.symbol);
@@ -100,13 +100,8 @@ var tictactoe = (function() {
         ele.innerHTML = _generatePlaySymbol(symbol);
     }
 
-    var getR = function() {
-        return response;
-    }
-
     return {
-        init: init,
-        get: getR
+        init: init
     }
 
 })();
